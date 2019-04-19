@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int main(){
+    int cod1, num1, cod2, num2;
+    float valor1,  valor2,total1, total2, total;
+
+    cod1 = 13;
+    num1 = 2;
+    valor1 = 15.30;
+
+    cod2 = 161;
+    num2 = 4;
+    valor2 = 5.20;
+
+    total1 = num1 * valor1;
+    total2 = num2 * valor2;
+    total = total1 + total2;
+
+    printf ("VALOR A PAGAR: R$ %.2f \n\n", total);
+
+
+return 0;
+}
