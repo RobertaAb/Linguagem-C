@@ -1,0 +1,21 @@
+#include<math.h>
+#include<stdio.h>
+
+float main(){
+
+float pA, pB, pT, A, B, MEDIA;
+
+pA=3.5;
+pB=7.5;
+pT= pA+pB;
+A=5.0*pA;
+B=7.1*pB;
+MEDIA = (A+B)/11;
+
+printf("MEDIA= %.5f \n\n", MEDIA);
+
+
+return 0;
+
+
+}
