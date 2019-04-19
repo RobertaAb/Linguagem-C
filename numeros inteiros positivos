@@ -1,0 +1,22 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+main(){
+int n, soma;
+
+printf("\n\n Calculo da soma dos n primeiros numeros inteiros positivos\n");
+
+printf("\n Digite o valor de n:");
+scanf("%d", &n);
+printf("\n Digite o valor de n:");
+scanf("%d", &n);
+printf("\n Digite o valor de n:");
+scanf("%d", &n);
+
+soma = (n*(n+1))/2;
+
+printf("A soma dos %d primeiros inteiros positivos eh %d \n", n, soma);
+
+return 0;
+}
