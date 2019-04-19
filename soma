@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include<math.h>
+
+int main(){
+int soma, z, y;
+
+z=10;
+y =9;
+soma = z+y;
+
+printf("X=%d \n\n", soma);
+system("pause");
+return 0;
+}
