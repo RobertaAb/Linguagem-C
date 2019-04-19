@@ -1,0 +1,15 @@
+#include <math.h>
+#include<stdio.h>
+
+int main (){
+
+    float raio, pi, esfera;
+
+    pi = 3.14159;
+    raio = 3;
+    esfera = (4/3.0)*pi*pow(raio, 3);
+    printf("VOLUME = %.3f \n\n", esfera);
+
+
+return 0;
+}
