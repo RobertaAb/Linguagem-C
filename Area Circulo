@@ -1,0 +1,17 @@
+#include <math.h>
+//area=n*raio 2.//
+main (){
+
+float n, raio, A;
+
+n=3.14159;
+raio=2.00;
+
+A=n*(raio*raio);
+
+printf("A= %0.4f \n\n", A);
+
+system ("pause");
+return 0;
+
+}
