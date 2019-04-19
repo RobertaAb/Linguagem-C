@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int triangulo (int x,int y, int z )
+{
+    if ((x<(y+z)) && (y<(x+z)))
+        &&(z < (y+x)))
+    {
+        if ((x==y)&&(x==z))
+            printf("O triangulo eh equilatero!");
+       
+ else if ((x==y))  || (x==z)||(z==y))
+            printf("O triangulo eh isosceles");
+            else
+                printf("O triangulo h um escaleno")
+            {
+                else
+                    printf("Nao eh um triangulo");
+                return 0;
+            }
+        int main (void)
+        {
+            int x = 0, y=0, z=0;
+            printf("Digite 3 medidas de lados:\n");
+            do
+            {
+                printf(" 1° lado:");
+                scanf("%d", &x);
+                if (x==0)
+                    printf("\n O valor de X nao pode ser 0!");
+            }
+            while (x==0);
+            do
+            {
+                printf(" 2° lado:");
+                scanf("%d", &y);
+                if (y==0)
+                    printf("\n O valor de y nao pode ser 0!");
+
+            }
+            while (x==0);
+            do
+            {
+                printf(" 3° lado:");
+                scanf("%d", &z);
+                if (z==0)
+                    printf("\n O valor de z nao pode ser 0!");
+
+            }
+            while (z==0);
+            triangulo(x,y,z);
+        }
+    }
+}
