@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int caracteres (char *nome);
+void tipos (char*nome, int *vogais, int *cons, int *brancos, int *vogal);
+void retira (char *nome, char *nova);
+void retirac (char *nome, char *nova, char tira);
+int main()
+{
+   setlocale (LC_ALL, "");
+   int vogais, cons, brancos;
+   char nome[100] ;
+   char nova [100];
+   char sub [100];
+   char tira;
+   printf ("Nome: ");
+   gets (nome);
+   printf ("A. Numero de caracteres: %d\n", caracteres(nome));
+
+   tipos (nome, &vogais, &cons, &brancos);
+   printf ("B. Vogais: %d, Consoantes: &d, Espaços em branco: %d\n", vogais, cons, brancos);
+
+   retira (nome, nova);
+   printf ("C. Nome sem vogais e espaços em brancos: %s\n", nova);
+
+   printf("Entre com caracter que deseja retirar: ");
+   scanf ("%c", &tira);
+
+   retirac(nome, sub, tira);
+   printf ("D. Nome sem '%c': %s\n" , tira, sub);
+
+}
+int caracteres (char *nome){
+    int total =0, i, j;
+    for (i=0; nome [i]!= '\0'; i++){
+        total++;
+    }
+    return total;
+}
+   void tipos (char *nome, int *vogais, int *cons, int *brancos){
+   int v=0, c=0, b=0, i, j;
+   char *vogal = "AEIOUÁÁÁAÉEÉÍÍÍÓÓÓÓÚÚÚÚaeiouáááááéééííííóóóóóúúúúú";
+   char *consoante = "BCDFGHJKLMNPQRSTVWXYZÇbcdfghjklmnpqrstvwxyzç";
+   for (i=0; nome [i]!= '\0'; i++){
+    if (nome[i] ==''){
+        b++;
+        continue;
+    }
+    for (j=0; vogal(j)!= '\0'; j++){
+        if (nome[i]==vogal[j]){
+            v++;
+            continue;
+        }
+    }
+    for (j=0; consoante [j]!= '\0'; j++){
+        if (nome[i] == consoante [j]){
+            c++;
+            continue;
+        }
+    }
+   }
+   *vogais = v;
+   *vogais = c;
+   *vogais =b;
+   }
+   void retira (char *nome, char *nova){
+   int i=0, j, passou;
+   char *vogal = "AEIOUÁÁÁAÉEÉÍÍÍÓÓÓÓÚÚÚÚaeiouáááááéééííííóóóóóúúúúú";
+   while (*nome != '\0'){
+    passou =1;
+    for (j=0; vogal [j]!= '\0'; j++){
+        if (*nome == vogal [j]){
+            passou = 0;
+        }
+    }
+    if (passou){
+        nova[i]= *nome;
+        ++i;
+    }
+    ++nome;
+   }
+    nova [i]= '0';
+
+}
+
+void retirac(char *nome, char *nova, char tira){
+    int i=0;
+    while (*nome != '\0'){
+        if (*nome == tira)
+            nova [i] = '*';
+        else
+            nova[i] = *nome;
+        ++i;
+        ++nome;
+    }
+    nova [i] = '\0';
+}
