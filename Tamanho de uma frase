@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+main()
+{
+    char frase [100];
+    int x, tam;
+    printf ("\n Digite uma frase com no maximo 100 caracteres:");
+    gets (frase);
+    tam = strlen (frase);
+    while(tam>100)
+
+    {
+        printf("\n TAMANHO INVALIDO.MAXIMO 100 CARACTERES");
+        printf ("\n DIGITE NOVAMENTE");
+        gets (frase);
+        tam=strlen (frase);
+
+    }
+    printf("\n\n");
+    for (x=0; x<=tam; x++)
+        printf ("\n%c", frase [x]);
+    printf ("\n\n");
+    system ("pause");
+    return(0);
+}
+
+
