@@ -1,0 +1,191 @@
+// Simulação de um sistema de semáforos com variáveis simples
+
+   #include <stdio.h>
+   #include <stdlib.h>
+
+   // Constantes lógicas
+   #define FALSE 0
+   #define TRUE 1
+
+  // Estados de Semáforo
+   #define DESLIGADO 11
+  #define LIGADO 12
+
+   // Sub-estados de Semáforo
+   #define VERMELHO 121
+   #define AMARELO_VERDE 122
+  #define VERDE 123
+  #define AMARELO_VERMELHO 124
+
+  // Eventos de Semáforo
+  #define A 21
+  #define B 22
+  #define C 23
+
+   // Eventos de controle de simulação
+   #define LIGAR 31
+  #define DESLIGAR 32
+#define CHAVEAR 33
+  #define TERMINAR 34
+
+  int obterAcao(void)
+  {
+       int invalido = FALSE, acao, opcao;
+       do
+       {
+          if (invalido)
+               printf("   Opção invalida. Tente novamente! Opcao: ");
+          else
+          {
+              printf("   Alternativas:\n   1 ligar sistema\n");
+              printf("   2 desligar sistema\n   3 chavear sistema\n");
+              printf("   4 evento FIM\nOpcao: ");
+        }
+         invalido = FALSE;
+          scanf("%d", &opcao);
+        switch (opcao)
+           {
+          case 1:
+              acao = LIGAR;
+               break;
+          case 2:
+              acao = DESLIGAR;
+             break;
+         case 3:
+              acao = CHAVEAR;
+             break;
+         case 4:
+             acao = TERMINAR;
+              break;
+          default:
+            invalido = TRUE;
+            break;
+          }
+      }
+       while (invalido);
+    return acao;
+}
+
+  void tratarEventoSemaforo(int evento, int *pAlvoE, int *pAlvoSE)
+  {
+       switch (evento)
+      {
+      case A:
+           if (*pAlvoE == DESLIGADO)
+          {
+             *pAlvoE = LIGADO;
+             *pAlvoSE = VERMELHO;
+         }
+        else *pAlvoE = DESLIGADO;
+         break;
+    case B:
+     {
+         if (*pAlvoE == LIGADO)
+             switch (*pAlvoSE)
+             {
+              case VERMELHO:
+                  *pAlvoSE = AMARELO_VERDE;
+                 break;
+              case AMARELO_VERDE:
+                  *pAlvoSE = VERDE;
+                  break;
+              case VERDE:
+                  *pAlvoSE = AMARELO_VERMELHO;
+                  break;
+              case AMARELO_VERMELHO:
+                  *pAlvoSE = VERMELHO;
+                  break;
+              }
+          break;
+    }
+    case C:
+        if (*pAlvoE == DESLIGADO)
+        {
+            *pAlvoE = LIGADO;
+            *pAlvoSE = VERDE;
+        }
+        break;
+    }
+ }
+
+ void ligarSistemaSemaforo(int *pSxE, int *pSxSE, int *pSyE, int *pSySE)
+ {
+    if (*pSxE == DESLIGADO)
+    {
+        tratarEventoSemaforo(A, pSxE, pSxSE);
+        tratarEventoSemaforo(C, pSyE, pSySE);
+    }
+ }
+
+  void desligarSistemaSemaforo(int *pSxE, int *pSxSE, int *pSyE, int *pSySE)
+  {
+     if (*pSxE == LIGADO)
+     {
+          tratarEventoSemaforo(A, pSxE, pSxSE);
+          tratarEventoSemaforo(A, pSyE, pSySE);
+      }
+  }
+
+  void chavearSistemaSemaforo(int *pSxE, int *pSxSE, int *pSyE, int *pSySE)
+ {
+     if (*pSxE == LIGADO)
+     {
+          tratarEventoSemaforo(B, pSxE, pSxSE);
+         tratarEventoSemaforo(B, pSyE, pSySE);
+    }
+  }
+
+  void apresentarEstadoSemaforo(int sE, int sSE)
+ {
+     if (sE == DESLIGADO) printf("DESLIGADO\n");
+      else
+     {
+         printf("LIGADO ");
+         switch (sSE)
+         {
+         case VERMELHO:
+             printf("VERMELHO\n");
+             break;
+         case AMARELO_VERDE:
+             printf("AMARELO_VERDE\n");
+             break;
+         case VERDE:
+             printf("VERDE\n");
+             break;
+         case AMARELO_VERMELHO:
+             printf("AMARELO_VERMELHO\n");
+             break;
+         }
+     }
+ }
+
+ int main(void)
+ {
+     int s1E = DESLIGADO, s1SE, s2E = DESLIGADO, s2SE, passo = 0, acao;
+     printf("*** passo: %d\n", passo++);
+     printf("s1: ");
+     apresentarEstadoSemaforo(s1E, s1SE);
+     printf("s2: ");
+     apresentarEstadoSemaforo(s2E, s2SE);
+     while ((acao = obterAcao()) != TERMINAR)
+     {
+         switch (acao)
+         {
+         case LIGAR:
+             ligarSistemaSemaforo(&s1E, &s1SE, &s2E, &s2SE);
+             break;
+         case DESLIGAR:
+             desligarSistemaSemaforo(&s1E, &s1SE, &s2E, &s2SE);
+             break;
+         case CHAVEAR:
+             chavearSistemaSemaforo(&s1E, &s1SE, &s2E, &s2SE);
+             break;
+         }
+         printf("*** passo: %d\n", passo++);
+         printf("s1: ");
+         apresentarEstadoSemaforo(s1E, s1SE);
+         printf("s2: ");
+         apresentarEstadoSemaforo(s2E, s2SE);
+      }
+      return 0;
+  }
