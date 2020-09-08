@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+    int x;
+    printf("\n Cálculo dos quadrados de uma sequencia de números \n \n");
+    printf("Entre com uma sequência de números inteiros não nulos seguida por 0: \n");
+    while (x != 0)
+    {
+        scanf("%d",&x);
+        if (x != 0) {
+        printf("O quadrado de %d é %d \n", x, (x*x));
+    }
+    }
+return 0;
+}

@@ -1,0 +1,12 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+    int a, quad;
+    printf("Digite um número inteiro: \n");
+    scanf("%d",&a);
+    quad = pow(a,2);
+    printf("Quadrado = %d\n", quad);
+    return 0;
+}

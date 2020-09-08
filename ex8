@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+int main()
+{
+    int x, aux;
+    int i = 0;
+
+    printf("Entre com o valor: \n");
+    scanf("%d",&x);
+
+    aux = abs(x);
+
+    while (i < 13)
+    {
+        printf("%d X %d = %d \n", aux, i, (aux*i));
+        i++;
+    }
+    return 0;
+}
+
+
